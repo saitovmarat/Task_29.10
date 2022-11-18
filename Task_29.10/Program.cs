@@ -57,7 +57,7 @@ namespace Homework
             bool flag3 = true;
             while (flag1 && flag2 && flag3)
             {
-                Console.WriteLine($"Кто даст задание, кто будет выполнят задание, какой номер задания(< {tasks.Count-1})    (все ответы пишите через запятую и пробел)");
+                Console.WriteLine($"Кто даст задание, кто будет выполнят задание, какой номер задания(>0, < {tasks.Count})    (все ответы пишите через запятую и пробел)");
                 string[] information = Console.ReadLine().Split(", ");
                 foreach (IWorker human in allWorkers)
                 {

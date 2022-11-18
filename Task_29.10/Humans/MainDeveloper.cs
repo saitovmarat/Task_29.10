@@ -34,7 +34,7 @@ namespace Task_29._10.Humans
             }
             else
             {
-                Console.WriteLine($"{worker}, кому хочешь передать задачу");
+                Console.WriteLine($"{worker.Name}, кому хочешь передать задачу");
                 bool flag = false;
                 int index = 0;
                 while (!flag)

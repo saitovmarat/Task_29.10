@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Tumakov
 {
@@ -27,10 +28,41 @@ namespace Tumakov
             {
                 Console.WriteLine(bank.Display());
             }
+            Console.ReadKey();
+            Console.Clear();
+
 
 
             Console.WriteLine("Упражнение 8.2");
             Reverse("Я марат");
+            Console.ReadKey();
+            Console.Clear();
+
+
+            Console.WriteLine("Упражнение 8.3");
+            Console.WriteLine("Напиши имя файла.");
+            //C:\Users\Пользователь\Desktop\a.txt
+            string a = Console.ReadLine();
+            if (File.Exists(a))
+            {
+                StreamReader file = new StreamReader(a);
+
+                StreamWriter newFile = new StreamWriter(@"C:\Users\Пользователь\Desktop\b.txt");
+                string str;
+                while ((str = file.ReadLine()) != null)
+                {
+                    newFile.Write(str.ToUpper());
+                }
+            }
+            else
+            {
+                Console.WriteLine("Такой файл не существует");
+            }
+            Console.ReadKey();
+            Console.Clear();
+
+
+
 
 
 
