@@ -43,7 +43,7 @@ namespace Task_29._10
                 {
                     if (index != 0)
                     {
-                        Console.WriteLine("Нет такого человека в компании \nПопробуйте еще раз.");
+                        Console.WriteLine("Нет такого человека в компании, попробуйте еще раз.");
                         Console.WriteLine($"{worker.Name}, кому хочешь передать задачу");
                     }
                     

@@ -10,6 +10,8 @@ namespace Homework
         static void Main(string[] args)
         {
             #region *Configuration*
+            IWorker flag = new Worker("tttt");
+
             IWorker administrationWorker1 = new Worker("Илья");
             IWorker administrationWorker2 = new Worker("Витя");
             IWorker administrationWorker3 = new Worker("Женя");
@@ -44,9 +46,67 @@ namespace Homework
             };
             #endregion
 
-            Task task1 = new Task("мыть полы");
-            Task task2 = new Task("мыть полы x2");
-            mainDirector.GiveATask(financeDirector, task1, allWorkers);
+            List<Task> tasks = new List<Task>() { new Task("мыть полы"), new Task("мыть посуду"), new Task("делать Тумакова") };
+
+            IWorker whoGivesTask = flag;
+            IWorker whoTakesTask = flag;
+            int taskIndex = 1000;
+
+            bool flag1 = true;
+            bool flag2 = true;
+            bool flag3 = true;
+            while (flag1 && flag2 && flag3)
+            {
+                Console.WriteLine($"Кто даст задание, кто будет выполнят задание, какой номер задания(< {tasks.Count-1})    (все ответы пишите через запятую и пробел)");
+                string[] information = Console.ReadLine().Split(", ");
+                foreach (IWorker human in allWorkers)
+                {
+                    if (human.Name.ToLower() == information[0].ToLower())
+                    {
+                        whoGivesTask = human;
+                        flag1 = false;
+                    }
+                }
+                if (whoGivesTask == flag)
+                {
+                    Console.WriteLine($"Человека под именем {information[0]} нет в нашей компании");
+
+                }
+
+                foreach (IWorker human in allWorkers)
+                {
+                    if (human.Name.ToLower() == information[1].ToLower())
+                    {
+                        whoTakesTask = human;
+                        flag2 = false;
+                    }
+                }
+                if (whoTakesTask == flag)
+                {
+                    Console.WriteLine($"Человека под именем {information[1]} нет в нашей компании");
+                }
+
+                bool a = int.TryParse(information[2], out taskIndex);
+                flag3 = false;
+                if (a == false || taskIndex > tasks.Count-1)
+                {
+                    Console.WriteLine($"{information[2]} не является целым числом или больше количества заданий");
+                    flag3 = true; 
+                }
+                if (flag1 != flag2 || flag1!= flag3 || flag2 != flag3)
+                {
+                    Console.WriteLine("Неправильно введена информация, попробуйте еще раз");
+                    flag1 = true;
+                    flag2 = true;
+                    flag3 = true;
+                Console.ReadKey();
+                Console.Clear();   
+                }
+            }
+
+            whoGivesTask.GiveATask(whoTakesTask, tasks[taskIndex], allWorkers);
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
